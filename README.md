@@ -1,50 +1,38 @@
-# Arduino Line Follower Robot
+Overview:  
+This project is a simple Arduino-based line follower robot. The robot is able to detect a black line on the floor and follow it automatically. It uses two IR sensors to sense the line and control the direction of the motors so that the robot stays on the path.
 
-This project is a simple line follower robot built using Arduino.  
-The robot is able to follow a black line drawn on a white surface.  
-It uses two IR sensors to detect the line and adjusts the motors so that it stays on the path.
+Features:
 
-I built this project to understand how sensors, motor drivers and basic control logic work together in a small robotics system.
+1. Line Following: Uses two IR sensors placed at the front of the robot to detect the black line.
+2. Direction Control: The robot adjusts the direction of the motors depending on which sensor detects the line.
+3. Simple Logic Control: The movement is controlled using basic Arduino logic based on sensor readings.
+4. Modular Code: The code is written in simple functions for motor control and sensor reading.
 
-## Components Used
+Components:
 
-- Arduino Uno  
-- L298N Motor Driver  
-- 2 IR Sensors  
-- 2 DC Motors  
-- Robot Chassis  
-- Battery Pack  
-- Connecting Wires  
+1. Arduino Uno  
+2. L298N Motor Driver  
+3. DC Motors (2)  
+4. IR Sensors (2)  
+5. Robot Chassis  
+6. Battery Pack  
+7. Connecting Wires  
 
-## How the Robot Works
+Circuit Diagram:
 
-Two IR sensors are placed at the front of the robot, one on the left and one on the right.  
-These sensors check the surface below them and send signals to the Arduino.
+The IR sensors are connected to the digital input pins of the Arduino to read line detection signals.  
+The L298N motor driver is connected to the Arduino output pins to control the direction and speed of the DC motors.
 
-Based on the sensor readings, the Arduino decides how the motors should move.
+Code Explanation:
 
-| Left Sensor | Right Sensor | Robot Action |
-|-------------|-------------|--------------|
-| LOW | LOW | Move Forward |
-| LOW | HIGH | Turn Left |
-| HIGH | LOW | Turn Right |
-| HIGH | HIGH | Stop |
+1. setup(): Initializes the motor driver pins and IR sensor pins and prepares the robot to start moving.
 
-This simple logic allows the robot to continuously adjust its direction and stay on the line.
+2. loop(): Continuously reads the values from the left and right IR sensors and decides how the robot should move.
 
-## What I Learned
+3. rotateMotor(): Controls the direction of the motors based on the speed values provided by the main logic.
 
-While building this project I learned:
-
-- how IR sensors detect different surfaces  
-- how to control DC motors using the L298N motor driver  
-- how to write Arduino logic to control a robot’s movement  
-- how simple sensor feedback can be used to guide a robot
-
-## Possible Improvements
-
-Some things that could be added in the future:
-
-- using more sensors for better accuracy  
-- implementing PID control for smoother motion  
-- increasing speed while maintaining stability
+4. Motor Logic:  
+   - If both sensors detect white surface → robot moves forward  
+   - If the left sensor detects the line → robot turns left  
+   - If the right sensor detects the line → robot turns right  
+   - If both sensors detect the line → robot stops
